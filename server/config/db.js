@@ -5,7 +5,7 @@ const connectDB = async () => {
     if (!process.env.MONGODB_URI) {
       console.error('❌ MONGODB_URI is not defined in .env file');
       console.log('📝 Please add your MongoDB Atlas connection string to server/.env');
-      console.log('   Example: MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/my-cafe');
+      console.log('   Example: MONGODB_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/<database>');
       console.log('⚠️  Server will continue without database connection');
       return;
     }
