@@ -1,10 +1,19 @@
 const Category = require('../models/Category');
+const mongoose = require('mongoose');
 
 // @desc    Get all categories
 // @route   GET /api/categories
 // @access  Public
 const getCategories = async (req, res) => {
   try {
+    // Check if database is connected
+    if (mongoose.connection.readyState !== 1) {
+      return res.status(503).json({
+        success: false,
+        message: 'Database is not connected. Please check your MongoDB Atlas connection.',
+        data: []
+      });
+    }
     const { active } = req.query;
     const query = {};
 

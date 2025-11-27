@@ -1,11 +1,20 @@
 const MenuItem = require('../models/MenuItem');
 const Category = require('../models/Category');
+const mongoose = require('mongoose');
 
 // @desc    Get all menu items
 // @route   GET /api/menu
 // @access  Public
 const getMenuItems = async (req, res) => {
   try {
+    // Check if database is connected
+    if (mongoose.connection.readyState !== 1) {
+      return res.status(503).json({
+        success: false,
+        message: 'Database is not connected. Please check your MongoDB Atlas connection.',
+        data: []
+      });
+    }
     const { category, featured, available, search, page = 1, limit = 12 } = req.query;
 
     // Build query

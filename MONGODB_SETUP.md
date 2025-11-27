@@ -1,4 +1,4 @@
-# MongoDB Atlas Setup Guide
+ # MongoDB Atlas Setup Guide
 
 Complete step-by-step guide to set up MongoDB Atlas and connect it to your application.
 

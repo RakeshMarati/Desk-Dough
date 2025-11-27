@@ -1,10 +1,19 @@
 const Testimonial = require('../models/Testimonial');
+const mongoose = require('mongoose');
 
 // @desc    Get all testimonials
 // @route   GET /api/testimonials
 // @access  Public
 const getTestimonials = async (req, res) => {
   try {
+    // Check if database is connected
+    if (mongoose.connection.readyState !== 1) {
+      return res.status(503).json({
+        success: false,
+        message: 'Database is not connected. Please check your MongoDB Atlas connection.',
+        data: []
+      });
+    }
     const { approved, featured, page = 1, limit = 10 } = req.query;
 
     // Build query
